@@ -1,0 +1,89 @@
+        # Check adjacent spots for a number
+
+        # Check Top 
+        # =============================
+        number = ""
+        # top left
+        if map[row-1][column-1] =~ /\d/
+          number += map[row-1][column-1]
+          if map[row-1][column] =~ /\d/
+            number += map[row-1][column]
+            if map[row-1][column+1] =~ /\d/
+              number += map[row-1][column]
+            end
+          end
+        end
+
+        # top 
+        if map[row-1][column] =~ /\d/
+          # Make sure this isn't a number we've counted
+          if map[row-1][column-1] =~ /\d/
+            next
+          end
+
+          number += map[row-1][column]
+          if map[row-1][column+1] =~ /\d/ 
+            number += map[row-1][column-1]
+          end
+        end
+        # top right
+        if map[row-1][column+1] =~ /\d/
+          if map[row-1][column] =~ /\d/
+            next
+          end
+          number += map[row-1][column+1]
+        end
+
+        puts "Char #{char} number top left #{number}"
+        total += number.to_i
+
+        # Check Center
+        # =============================
+        number = ""
+        # left
+        if map[row][column-1] =~ /\d/
+          total += map[row][column-1].to_i
+          puts "Char #{char} number middle #{map[row][column-1]}"
+        end
+        # right
+        if map[row][column+1] =~ /\d/
+          total += map[row][column+1].to_i
+          puts "Char #{char} number middle #{map[row][column+1]}"
+        end
+
+        # Check Bottom 
+        # =============================
+        number = ""
+        # top left
+        if map[row+1][column-1] =~ /\d/
+          number += map[row+1][column-1]
+          if map[row+1][column] =~ /\d/
+            number += map[row+1][column]
+            if map[row+1][column+1] =~ /\d/
+              number += map[row+1][column]
+            end
+          end
+        end
+
+        # top 
+        if map[row+1][column] =~ /\d/
+          # Make sure this isn't a number we've counted
+          if map[row+1][column-1] =~ /\d/
+            next
+          end
+
+          number += map[row+1][column]
+          if map[row+1][column+1] =~ /\d/ 
+            number += map[row-1][column-1]
+          end
+        end
+        # top right
+        if map[row+1][column+1] =~ /\d/
+          if map[row+1][column] =~ /\d/
+            next
+          end
+          number += map[row-1][column+1]
+        end
+
+        puts "Char #{char} number top left #{number}"
+        total += number.to_i
